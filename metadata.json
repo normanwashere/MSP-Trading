@@ -1,0 +1,7 @@
+{
+  "name": "MSP LPG POS & Inventory",
+  "description": "A Point-of-Sale and Inventory management Progressive Web App for a small LPG trading business. It features offline capabilities, fast checkout, stock tracking, and expense logging.",
+  "requestFramePermissions": [
+    "camera"
+  ]
+}

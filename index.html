@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MSP LPG POS</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+    }
+  </script>
+  <script>
+    // On page load or when changing themes, best to add inline in `head` to avoid FOUC
+    if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+      document.documentElement.classList.add('dark')
+    } else {
+      document.documentElement.classList.remove('dark')
+    }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #f0faff; /* A light blue fallback */
+      background-image: linear-gradient(160deg, #e0f2fe 0%, #ede9fe 100%); /* sky-100 to violet-100 */
+    }
+    .dark body {
+        background-color: #080808;
+        background-image: linear-gradient(160deg, hsl(210, 60%, 10%) 0%, hsl(220, 30%, 5%) 50%, hsl(28, 70%, 8%) 100%);
+    }
+    .app-container::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: url('https://sofia.static.domains/Logos/MSPLOGO.png');
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: 70%;
+      opacity: 0.1;
+      z-index: -1;
+      pointer-events: none;
+    }
+    .dark .app-container::before {
+      filter: invert(1);
+      opacity: 0.15;
+    }
+    select {
+      appearance: none;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236B7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
+      background-position: right 0.5rem center;
+      background-repeat: no-repeat;
+      background-size: 1.5em 1.5em;
+    }
+    .dark select {
+       background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%239CA3AF' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
+    }
+    select option {
+      background: #FFFFFF;
+      color: #111827;
+    }
+    .dark select option {
+      background: #1F2937; /* Tailwind gray-800 */
+      color: white;
+    }
+    /* Hide scrollbars across the app */
+    ::-webkit-scrollbar {
+      display: none; /* for Chrome, Safari, and Opera */
+    }
+    * {
+      -ms-overflow-style: none;  /* for Internet Explorer, Edge */
+      scrollbar-width: none;  /* for Firefox */
+    }
+    @media print {
+      body * {
+        visibility: hidden;
+      }
+
+      .printable-area, .printable-area * {
+        visibility: visible;
+      }
+
+      .printable-area {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        padding: 20px;
+        font-size: 10pt;
+      }
+      
+      /* Reset styles for clean printing */
+      .printable-area * {
+        color: #000 !important;
+        background: transparent !important;
+        box-shadow: none !important;
+        text-shadow: none !important;
+        backdrop-filter: none !important;
+        -webkit-backdrop-filter: none !important;
+      }
+      
+      /* Ensure borders are simple */
+      .printable-area .border {
+          border-color: #ccc !important;
+          border-width: 1px !important;
+      }
+
+      .non-printable {
+        display: none !important;
+      }
+
+      /* Specific styles for POS receipt and EOD items */
+      .receipt-item, .summary-item {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        padding: 4px 0;
+        border-bottom: 1px solid #eee;
+      }
+      
+      .total-row {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        font-weight: bold;
+        border-top: 2px solid #333;
+        padding-top: 8px;
+        margin-top: 8px;
+      }
+
+      /* Make sure headings are clear */
+      .printable-area h1, .printable-area h2, .printable-area h3, .printable-area h4 {
+          color: #000 !important;
+      }
+
+      a, a:visited {
+        text-decoration: underline;
+        color: #000 !important;
+      }
+      
+      body {
+        background-image: none !important;
+        background-color: #fff !important;
+      }
+    }
+  </style>
+<script type="importmap">
+{
+  "imports": {
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.1.1/",
+    "react/": "https://aistudiocdn.com/react@^19.1.1/",
+    "react": "https://aistudiocdn.com/react@^19.1.1"
+  }
+}
+</script>
+</head>
+<body>
+  <div id="root"></div>
+  <script type="module" src="/index.tsx"></script>
+</body>
+</html>
